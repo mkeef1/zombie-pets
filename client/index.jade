@@ -22,7 +22,7 @@ html(ng-app='zombie-pets', lang='en')
               h4 Health: {{player1.health}}
               h4 Weapon: {{player1.weapon.name}}
               h4 Damage: {{player1.weapon.damage}}
-            button.btn.btn-danger.btn-lg  Fight!
+            button.btn.btn-danger.btn-lg(ng-click='petHit(player1, player2)')  Fight!
             .pet
               .image(style='background-image:url("{{player2.photo}}");')
               h4 Name: {{player2.name}}

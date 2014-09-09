@@ -10,6 +10,7 @@
     $scope.pet = {health:100};
     $scope.pets = [];
 
+
     $scope.player1 = null;
     $scope.player2 = null;
 
@@ -38,6 +39,23 @@
     $scope.togglePet = function(){
       $scope.hidePet = !!!$scope.hidePet;
     };
+
+    $scope.petHit = function(player1, player2){
+      debugger;
+      var damage = Math.Random() * $scope.weapon.damage;
+
+      if(!this.isZombie){
+        damage += this.health / 10;
+      }
+
+      $scope.pet.health -= damage;
+
+      if(($scope.pet.health < 0) && !$scope.pet.isZombie){
+        $scope.pet.isZombie = true;
+        damage = Math.Random() * 3;
+      }
+    };
+
   }]);
 })();
 
