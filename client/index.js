@@ -7,6 +7,8 @@
 
     $scope.weapon = {};
     $scope.weapons = [];
+    $scope.pet = {health:100};
+    $scope.pets = [];
 
     $scope.addWeapon = function(){
       $scope.weapons.push($scope.weapon);
@@ -14,9 +16,19 @@
       $('#name').focus();
     };
 
+    $scope.addPet = function(){
+      var index = $scope.pet.weapon * 1;
+      $scope.pet.weapon = $scope.weapons[index];
+      $scope.pets.push($scope.pet);
+      $scope.pet = {health:100};
+    };
 
     $scope.toggleWeapon = function(){
       $scope.hideWeapon = !!!$scope.hideWeapon;
+    };
+
+    $scope.togglePet = function(){
+      $scope.hidePet = !!!$scope.hidePet;
     };
   }]);
 })();
