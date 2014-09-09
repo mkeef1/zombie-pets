@@ -1,17 +1,23 @@
 (function(){
   'use strict';
 
-  angular.module('mean-template', [])
-  .controller('MainController', ['$scope', '$interval', function($scope, $interval){
-    var occupations = ['Superheroes', 'Ninjas', 'Pirates', 'Vampires', 'Aliens', 'Dragons', 'Sharks with Lasers', 'Transformers', 'I am Groot'];
+  angular.module('zombie-pets', [])
+  .controller('MainController', ['$scope', function($scope){
+    $scope.title = 'Zombie Pets';
 
-    $scope.title = 'Mean Template';
-    $scope.occupation = occupations[0];
+    $scope.weapon = {};
+    $scope.weapons = [];
 
-    $interval(function(){
-      var rnd = Math.floor(Math.random() * occupations.length);
-      $scope.occupation = occupations[rnd];
-    }, 500);
+    $scope.addWeapon = function(){
+      $scope.weapons.push($scope.weapon);
+      $scope.weapon = {};
+      $('#name').focus();
+    };
+
+
+    $scope.toggleWeapon = function(){
+      $scope.hideWeapon = !!!$scope.hideWeapon;
+    };
   }]);
 })();
 

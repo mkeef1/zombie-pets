@@ -1,10 +1,10 @@
 doctype html
-html(ng-app='mean-template', lang='en')
+html(ng-app='zombie-pets', lang='en')
   head
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
     meta(name='viewport', content='width=device-width, initial-scale=1')
-    title MEAN Template
+    title Zombie Pets
     link(href='/vendor/bootstrap/dist/css/bootstrap.css', rel='stylesheet')
     link(href='/vendor/fontawesome/css/font-awesome.css', rel='stylesheet')
     link(href='/index.css', rel='stylesheet')
@@ -13,9 +13,32 @@ html(ng-app='mean-template', lang='en')
       .row
         .col-xs-12
           h1 {{title}}
-          h2
-            span Web Development for &nbsp;
-            em: u {{occupation}}
+      .row
+        .col-xs-5
+          h4 Create Weapon
+          button.btn.btn-success(ng-click='toggleWeapon()') Toggle Form
+          form(role='form', novalidate, ng-hide='hideWeapon', name='weaponForm')
+            .form-group
+              label(for='name') Name
+              input.form-control#name(ng-minlength='3', ng-maxlength='10', ng-model='weapon.name', type='text', name='name', required, autofocus)
+            .form-group
+              label(for='photo') Photo
+              input.form-control#photo(ng-pattern='/^http/', ng-model='weapon.photo', type='text', name='photo', required)
+            .form-group
+              label(for='damage') Damage
+              input.form-control#damage(ng-model='weapon.damage', type='number', name='damage', required)
+            button.btn.btn-primary(type='submit', ng-show='weaponForm.$valid', ng-click='addWeapon()') Add Weapon
+        .col-xs-7
+      .row
+        .col-xs-12
+          .weapon(ng-repeat='w in weapons')
+            .name {{w.name}}
+            .damage {{w.damage}}
+      .row
+        .col-xs-12
+          pre {{weapon | json}}
+          pre {{weapons | json}}
+
 
     script(src='/vendor/angular/angular.js')
     script(src='/vendor/jquery/dist/jquery.js')
