@@ -14,6 +14,22 @@ html(ng-app='zombie-pets', lang='en')
         .col-xs-12
           h1 {{title}}
       .row
+        .col-xs-12
+          #cage(ng-show='player1 && player2')
+            .pet
+              .image(style='background-image:url("{{player1.photo}}");')
+              h4 Name: {{player1.name}}
+              h4 Health: {{player1.health}}
+              h4 Weapon: {{player1.weapon.name}}
+              h4 Damage: {{player1.weapon.damage}}
+            button.btn.btn-danger.btn-lg  Fight!
+            .pet
+              .image(style='background-image:url("{{player2.photo}}");')
+              h4 Name: {{player2.name}}
+              h4 Health: {{player2.health}}
+              h4 Weapon: {{player2.weapon.name}}
+              h4 Damage: {{player2.weapon.damage}}
+      .row
         .col-xs-3
           h4 Create Weapon
           button.btn.btn-success(ng-click='toggleWeapon()') Toggle Form
@@ -60,13 +76,17 @@ html(ng-app='zombie-pets', lang='en')
             .image(style='background-image:url("{{p.photo}}");')
             h4 Name: {{p.name}}
             h4 Health: {{p.health}}
-            h4 Weapon: {{w}}
+            h4 Weapon: {{p.weapon.name}}
+            button.btn.btn-danger(ng-click='setPlayer(1)') 1
+            button.btn.btn-danger(ng-click='setPlayer(2)') 2
       .row
         .col-xs-12
           pre {{weapon | json}}
           pre {{weapons | json}}
           pre {{pet | json}}
           pre {{pets | json}}
+          pre {{player1 | json}}
+          pre {{player2 | json}}
 
 
     script(src='/vendor/angular/angular.js')
